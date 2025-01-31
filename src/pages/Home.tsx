@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ArrowRight, Shield, Bell, Lock, Heart, Star } from "lucide-react";
+import { ArrowRight, Shield, Bell, Lock, Heart, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, animate, useMotionValue, useInView } from "framer-motion";
 const fadeIn = {
@@ -59,10 +59,130 @@ const stats = [{
   label: "Star Rating",
   suffix: "/5"
 }];
+const Footer = () => (
+  <motion.footer 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="bg-white border-t border-gray-100"
+  >
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {/* Contact Info */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="space-y-4"
+        >
+          <h3 className="text-lg font-semibold text-gray-900">Contact Us</h3>
+          <div className="flex items-center space-x-3 group">
+            <Mail className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform" />
+            <a 
+              href="mailto:support@semaine.com" 
+              className="text-gray-600 hover:text-red-600 transition-colors"
+            >
+              support@semaine.com
+            </a>
+          </div>
+          <div className="flex items-center space-x-3 group">
+            <Phone className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform" />
+            <a 
+              href="tel:+11234567890" 
+              className="text-gray-600 hover:text-red-600 transition-colors"
+            >
+              +1 (123) 456-7890
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Social Media */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="space-y-4"
+        >
+          <h3 className="text-lg font-semibold text-gray-900">Follow Us</h3>
+          <div className="flex space-x-4">
+            {[
+              { icon: <Facebook className="w-6 h-6" />, name: 'Facebook' },
+              { icon: <Twitter className="w-6 h-6" />, name: 'Twitter' },
+              { icon: <Instagram className="w-6 h-6" />, name: 'Instagram' },
+            ].map((social, index) => (
+              <motion.a
+                key={index}
+                href="#"
+                className="p-2 text-gray-600 hover:text-red-600 rounded-full hover:bg-red-50 transition-all duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Additional Sections */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="space-y-4"
+        >
+          <h3 className="text-lg font-semibold text-gray-900">Security</h3>
+          <nav className="flex flex-col space-y-2">
+            {['Privacy Policy', 'Terms of Service', 'Security Tips'].map((item, index) => (
+              <a 
+                key={index}
+                href="#"
+                className="text-gray-600 hover:text-red-600 transition-colors hover:pl-2 duration-300"
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+        </motion.div>
+
+        {/* Branding */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="space-y-4"
+        >
+          <div className="flex items-center space-x-3">
+            <Shield className="w-8 h-8 text-red-500" />
+            <span className="text-xl font-bold text-gray-900">Semaine</span>
+          </div>
+          <p className="text-sm text-gray-600">
+            Empowering your safety since 2020
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Copyright */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="mt-12 pt-8 border-t border-gray-100 text-center text-sm text-gray-600"
+      >
+        © {new Date().getFullYear()} Semaine Security. All rights reserved.
+      </motion.div>
+    </div>
+  </motion.footer>
+);
+
+interface AnimatedNumberProps {
+  value: number;
+  suffix?: string;
+}
+
 const AnimatedNumber = ({
   value,
   suffix = ""
-}) => {
+}: AnimatedNumberProps) => {
   const ref = useRef(null);
   const motionValue = useMotionValue(0);
   const isInView = useInView(ref);
@@ -318,33 +438,8 @@ export const Home = () => {
     }} viewport={{
       once: true
     }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{
-          scale: 0.9,
-          opacity: 0
-        }} whileInView={{
-          scale: 1,
-          opacity: 1
-        }} viewport={{
-          once: true
-        }} className="bg-white/10 p-12 rounded-2xl backdrop-blur-sm">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Ready to Feel Safer?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust our security
-              solutions.
-            </p>
-            <motion.div whileHover={{
-            scale: 1.05
-          }} whileTap={{
-            scale: 0.95
-          }}>
-              <Link to="/products" className="inline-flex items-center px-8 py-4 text-lg font-medium rounded-md text-red-600 bg-white hover:bg-gray-100 transition-all duration-200">
-                View Products <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </motion.div>
-          </motion.div>
+        <div className="w-full bg-white overflow-hidden">
+          <Footer />
         </div>
       </motion.div>
     </div>;
