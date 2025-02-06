@@ -208,7 +208,7 @@ export const Home = () => {
   } = useScroll();
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  return <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+  return <div className="w-full overflow-hidden">
       <div className="relative">
         <motion.div style={{
         scale: heroScale,
