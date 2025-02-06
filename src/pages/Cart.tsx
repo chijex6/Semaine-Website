@@ -1,5 +1,4 @@
-import React from "react";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Heart, CheckCircle } from "lucide-react";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Heart } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -58,7 +57,7 @@ export const Cart = () => {
   const handleCheckout = () => {
     navigate("/checkout");
   };
-  return <div className="w-full min-h-screen bg-gray-50">
+  return <div className="w-full min-h-screen bg-gray-50">   
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <Breadcrumb />
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
@@ -88,7 +87,7 @@ export const Cart = () => {
                             {item.name}
                           </h3>
                           <p className="text-gray-600">
-                            Unit Price: ${item.price}
+                            Unit Price: ₦{item.price}
                           </p>
                         </div>
                         <div className="flex items-center space-x-4">
@@ -112,7 +111,7 @@ export const Cart = () => {
                         </div>
                         <div className="ml-auto">
                           <p className="text-lg font-semibold">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            ₦{(item.price * item.quantity).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -139,7 +138,7 @@ export const Cart = () => {
                       <h3 className="text-lg font-semibold text-gray-900">
                         {product.name}
                       </h3>
-                      <p className="text-gray-600 mt-1">${product.price}</p>
+                      <p className="text-gray-600 mt-1">₦{product.price}</p>
                       <button onClick={() => addToCart(product)} className="mt-4 w-full bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 transition-colors">
                         Add to Cart
                       </button>
@@ -162,7 +161,7 @@ export const Cart = () => {
               <div className="space-y-4">
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal ({cartItems.length} items)</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>₦{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Shipping</span>
@@ -170,12 +169,12 @@ export const Cart = () => {
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Estimated Tax</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>₦{tax.toFixed(2)}</span>
                 </div>
                 <div className="border-t pt-4 mt-4">
                   <div className="flex justify-between font-semibold text-lg">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>₦{total.toFixed(2)}</span>
                   </div>
                   <p className="text-sm text-gray-500 mt-2">
                     Final price including tax and shipping
