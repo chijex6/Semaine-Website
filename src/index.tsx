@@ -1,11 +1,11 @@
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppRouter } from "./AppRouter";
 ReactDOM.render(
-    <BrowserRouter>
+    <HashRouter>
         <AppRouter />
-    </BrowserRouter>,
+    </HashRouter>,
     document.getElementById("root")
 )
